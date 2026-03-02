@@ -29,5 +29,12 @@ Through iterative prompting and manual verification, several "Forensic Correctio
 - **Page 2:** Captured the copyright notice, development timeline (Feb-April 1975), and initial memory/stack constants (`NUMLEV`, `LINLEN`).
 - **Page 3:** Documented the `INTERNAL` and `EXTERNAL` symbol definitions, linking the various modules of the system.
 
+## Phase 4: Image Preprocessing & OCR Optimization (March 2026)
+To overcome the limitations of standard OCR on degraded 1975 printer output, the project adopted a dual-source image strategy:
+- **Raw Extractions:** `pdfimages` was used to extract every page as a raw `.jpg` to preserve original details.
+- **Preprocessing Pipeline:** A custom shell script `tools/ocr-preprocess.sh` was developed to clean these images using ImageMagick (grayscale, deskew, and sharpening).
+- **Parallel OCR Approach:** By maintaining both the raw and "ocr-ready" versions, the team (and AI models) can cross-reference versions to resolve character ambiguities caused by ink bleeds or faint printing.
+- **Initial Verification:** Reconstruction of the first four pages (0-3) has been completed, serving as the benchmark for this new pipeline.
+
 ## Current Status (March 2, 2026)
 The project is currently moving into the deep reconstruction of the `RST` subroutines and the core interpreter logic. AI assistance is being used to provide "Ground Truth" checks against the `GEMINI.md` context file to maintain consistency across sessions.
