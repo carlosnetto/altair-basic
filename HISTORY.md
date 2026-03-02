@@ -25,9 +25,10 @@ Through iterative prompting and manual verification, several "Forensic Correctio
     - **Monte Davidoff:** Math package.
 
 ## Phase 3: Page-by-Page Reconstruction
-- **Page 1:** Captured the "Common File" header and basic configuration flags (LPT, DSKFUN, STRING).
-- **Page 2:** Captured the copyright notice, development timeline (Feb-April 1975), and initial memory/stack constants (`NUMLEV`, `LINLEN`).
-- **Page 3:** Documented the `INTERNAL` and `EXTERNAL` symbol definitions, linking the various modules of the system.
+- **Page 1 (page-000):** Captured the "Common File" header and basic configuration flags (LPT, DSKFUN, STRING), RST macro definitions.
+- **Page 2 (page-001):** Captured the PUSHR/POPR/MOVRI macros and PRINTX build-time diagnostics.
+- **Page 3 (page-002):** Captured the copyright notice, development timeline (Feb-April 1975), and initial memory/stack constants (`NUMLEV`, `LINLEN`).
+- **Page 4 (page-003):** Documented the `INTERNAL` and `EXTERNAL` symbol definitions, linking the various modules of the system.
 
 ## Phase 4: Image Preprocessing & OCR Optimization (March 2026)
 To overcome the limitations of standard OCR on degraded 1975 printer output, the project adopted a dual-source image strategy:
@@ -36,5 +37,15 @@ To overcome the limitations of standard OCR on degraded 1975 printer output, the
 - **Parallel OCR Approach:** By maintaining both the raw and "ocr-ready" versions, the team (and AI models) can cross-reference versions to resolve character ambiguities caused by ink bleeds or faint printing.
 - **Initial Verification:** Reconstruction of the first four pages (0-3) has been completed, serving as the benchmark for this new pipeline.
 
+## Phase 5: Transcription Refinements & Claude Code Integration (March 2026)
+With the pipeline established, a detailed pass over `page-000.MAC` surfaced several corrections and improvements:
+
+- **Printer Banner Corrected:** The F3 job banner ASCII art at the top of page-000 was re-read from the source image and corrected. The "3" digit is rendered in a specific TOPS-10 LPT block-letter style: open top and bottom curves (showing both sides), narrowing to a right-only stroke in the middle section, with a short middle prong on the far right. This is structurally different from a simple mirrored "8".
+- **`DSFFUN` → `DSKFUN`:** Line 28 of page-000 had `DSFFUN==0` (a misread of the K as two characters FF due to ink fragmentation). Corrected to `DSKFUN==0`, consistent with lines 9 and 19 of the same block.
+- **New Decoder Ring Rule:** The `^` (caret) character reliably prints as `"` (close-quote) in degraded LPT output. `"D13` → `^D13` (decimal 13 = CR), `"D10` → `^D10` (decimal 10 = LF).
+- **New Decoder Ring Rule:** In printer banners, `3` sometimes appears as `5` due to ink bleed — these are artifacts, not actual digit `5` characters.
+- **Complete LPTSPL Header:** The full system header (including `QUEUE SWITCHES` and `FILE WILL BE DELETED AFTER PRINTING` lines) was added to `page-000.MAC`.
+- **`CLAUDE.md` Created:** A Claude Code-specific instruction file was added to the repo. It documents the OCR workflow, decoder ring, gold standard header, column format, and completed page inventory — enabling consistent AI-assisted transcription across sessions.
+
 ## Current Status (March 2, 2026)
-The project is currently moving into the deep reconstruction of the `RST` subroutines and the core interpreter logic. AI assistance is being used to provide "Ground Truth" checks against the `GEMINI.md` context file to maintain consistency across sessions.
+Pages 0–3 are verified. The project is moving into the deep reconstruction of the `RST` subroutines and the core interpreter logic, starting from `page-004`. The dual-source image strategy (JPG + OCR-ready PNG) and the decoder ring rules are the primary tools for resolving ambiguities in subsequent pages.
