@@ -25,6 +25,7 @@ If you are interested in retro-computing, 8080 assembly, or just want to help pr
 *   `GEMINI.md`: The technical "Ground Truth" for AI transcription. Use this file as context when prompting AI tools to ensure consistent parsing of the 4-column matrix and printer artifacts.
 *   `HISTORY.md`: A detailed narrative of the project's milestones, discoveries (like the PDP-10 listing format), and progress so far.
 *   `Original-Microsoft-Source-Code.pdf`: The primary source document provided by Bill Gates.
+*   `.gitignore`: Excludes system-specific and unnecessary files (like `.DS_Store`) from the repository.
 *   `images/`: Contains raw `.jpg` extractions from the PDF and preprocessed `-ocr-ready.png` versions.
     *   `page-XXX.jpg`: Raw extraction using `pdfimages`.
     *   `page-XXX-ocr-ready.png`: Preprocessed image for better OCR accuracy.
