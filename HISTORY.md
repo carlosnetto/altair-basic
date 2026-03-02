@@ -47,5 +47,11 @@ With the pipeline established, a detailed pass over `page-000.MAC` surfaced seve
 - **Complete LPTSPL Header:** The full system header (including `QUEUE SWITCHES` and `FILE WILL BE DELETED AFTER PRINTING` lines) was added to `page-000.MAC`.
 - **`CLAUDE.md` Created:** A Claude Code-specific instruction file was added to the repo. It documents the OCR workflow, decoder ring, gold standard header, column format, and completed page inventory — enabling consistent AI-assisted transcription across sessions.
 
+## Phase 6: Assembler Rules Validation (March 2026)
+To further improve OCR accuracy and resolve ambiguities, the original "DECsystem-10 MACRO Assembler Reference Manual" (April 1978) was sourced. 
+- **Directive Validation:** The manual confirmed the behavior of the `IFE` (If Equal to Zero), `IFN` (If Not Equal to Zero), and `XWD` (Transfer Word) pseudo-ops, validating how Gates and Allen cross-assembled code and configured features based on the `LENGTH` system variable.
+- **`MACRO-10.md` Created:** A summary of these assembler rules, including radix control (`^D`/`^O`), was placed in the project root as a quick-reference for OCR transcription.
+- **The `CONTRW` Anomaly:** Discovered that the flag for allowing Control-O (`^O`) is literally spelled `CONTRW` in the source, not `CONTRO`. The Decoder Ring in all context files was updated to explicitly forbid "fixing" this anomaly.
+
 ## Current Status (March 2, 2026)
-Pages 0–3 are verified. The project is moving into the deep reconstruction of the `RST` subroutines and the core interpreter logic, starting from `page-004`. The dual-source image strategy (JPG + OCR-ready PNG) and the decoder ring rules are the primary tools for resolving ambiguities in subsequent pages.
+Pages 0–3 are verified. With the PDP-10 assembler manual rules now integrated into the project's knowledge base (`MACRO-10.md`), the team is prepared to move into the deep reconstruction of the `RST` subroutines and the core interpreter logic, starting from `page-004`.

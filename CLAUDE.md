@@ -54,6 +54,7 @@ Every non-blank listing line:
 | `5` | `3` | In printer banners — ink bleed artifact |
 | `=` (in dates) | `-` | `10=SEP=75` → `10-SEP-75` |
 | `b` (in dates) | `6` | `b-SEP-b4` → `6-SEP-64` |
+| `CONTRW` | `CONTRW` | The flag for allowing Control-O is CONTRW, not CONTRO. Do not "fix" it. |
 
 **Rule:** When in doubt, mark the value as `[UNREADABLE]` and note it. Do not guess.
 

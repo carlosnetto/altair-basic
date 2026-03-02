@@ -7,24 +7,24 @@
 ; FFFFFFFFFFFFFFFF         333333333
 ; FFFFFFFFFFFFFFFF         333333333
 ; FFFFFFFFFFFFFFFF         333333333
-; FFF               333              533
-; FFF               333              533
-; FFF               333              533
-; FFF                                533
-; FFF                                533
-; FFF                                533
-; FFFFFFFFFFFF                       333
-; FFFFFFFFFFFF                       333
-; FFFFFFFFFFFF                       333
-; FFF                                533
-; FFF                                533
-; FFF                                533
-; FFF               333              533
+; FFF               333              333
+; FFF               333              333
+; FFF               333              333
+; FFF                                333
+; FFF                                333
+; FFF                                333
+; FFFFFFFFFFFF             333333333
+; FFFFFFFFFFFF             333333333
+; FFFFFFFFFFFF             333333333
+; FFF                                333
+; FFF                                333
+; FFF                                333
+; FFF               333              333
 ; FFF               333              333
 ; FFF               333              333
 ; FFF                      333333333
 ; FFF                      333333333
-; FFF                      533333333
+; FFF                      333333333
 ;
 ; --- LPTSPL SYSTEM HEADER ---
 ;
@@ -55,15 +55,15 @@
   9    000000      00900  DSKFUN==0                    ;ON TO READ/WRITE
  10    000000      01000  CONSSW==0
  11
- 12    000016      01200  CLMWID=="014                 ;MAKE COMMA COLUMNS FOURTEEN CHARACTERS
- 13    020000      01300  RAMBOT=020000                ;BOTTOM LOCATION OF RAM FOR PURE SWITCH
- 14    000001      01400  CONTRW==1                    ;ALLOW ^O
+ 12    000016      01200  CLMWID==^D14                 ;MAKE COMMA COLUMNS FOURTEEN CHARACTERS
+ 13    020000      01300  RAMBOT=^O20000               ;BOTTOM LOCATION OF RAM FOR PURE SWITCH
+ 14    000001      01400  CONTRO==1                    ;ALLOW ^O
  15                01500  IFE     REALIO,<
  16                01600          LPTSW==0             ;SIMULATOR DEFAULTS
  17                01700          CASSW==0
  18                01800          CONSSW==0
  19                01900          DSKFUN==0
- 20                02000          CONTRW==0>
+ 20                02000          CONTRO==0>
  21
  22                02200  IFE     LENGTH,<
  23                02300          EXTFNC==0            ;ON MEANS EXTENDED FUNCTIONS
@@ -73,7 +73,7 @@
  27                02700          LPTSW==0
  28                02800          DSKFUN==0
  29                02900          CONSSW==0
- 30                03000          CONTRW==0>
+ 30                03000          CONTRO==0>
  31
  32                03200  IFE     LENGTH-1,<
  33                03300          EXTFNC==1
@@ -96,4 +96,4 @@
  50                05000          PUSHM>
  51                05100  DEFINE  ACRLF,<
  52                05200          ^D13
- 53                05300          IFN STRING,<^D10>>>
+ 53                05300          IFN STRING,<^D10>>
